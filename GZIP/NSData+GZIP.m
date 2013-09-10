@@ -4,6 +4,7 @@
 //  Version 1.0
 //
 //  Created by Nick Lockwood on 03/06/2012.
+//  Modified by Eric Chen on 09/10/2013.
 //  Copyright (C) 2012 Charcoal Design
 //
 //  Distributed under the permissive zlib License
@@ -40,7 +41,7 @@
 
 @implementation NSData (GZIP)
 
-- (NSData *)gzippedDataWithCompressionLevel:(float)level
+- (NSData *)gzippedDataWithCompressionLevel:(float)level andType:(int)dataType
 {
     if ([self length])
     {
@@ -54,7 +55,7 @@
         stream.avail_out = 0;
         
         int compression = (level < 0.0f)? Z_DEFAULT_COMPRESSION: (int)roundf(level * 9);
-        if (deflateInit2(&stream, compression, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY) == Z_OK)
+        if (deflateInit2(&stream, compression, Z_DEFLATED, dataType, 8, Z_DEFAULT_STRATEGY) == Z_OK)
         {
             NSMutableData *data = [NSMutableData dataWithLength:CHUNK_SIZE];
             while (stream.avail_out == 0)
@@ -77,7 +78,7 @@
 
 - (NSData *)gzippedData
 {
-    return [self gzippedDataWithCompressionLevel:-1.0f];
+    return [self gzippedDataWithCompressionLevel:-1.0f andType:DEFLATE_RAW];
 }
 
 - (NSData *)gunzippedData

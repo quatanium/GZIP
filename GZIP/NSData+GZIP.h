@@ -33,10 +33,13 @@
 
 #import <Foundation/Foundation.h>
 
+#define DEFLATE_RAW     -15
+#define DEFLATE_ZLIB    15
+#define DEFLATE_GZIP    31
 
 @interface NSData (GZIP)
 
-- (NSData *)gzippedDataWithCompressionLevel:(float)level;
+- (NSData *)gzippedDataWithCompressionLevel:(float)level andType:(int)dataType;
 - (NSData *)gzippedData;
 - (NSData *)gunzippedData;
 
