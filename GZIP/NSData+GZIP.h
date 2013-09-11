@@ -37,10 +37,16 @@
 #define DEFLATE_ZLIB    15
 #define DEFLATE_GZIP    31
 
+#define INFLATE_RAW     -15
+#define INFLATE_ZLIB    15
+#define INFLATE_GZIP    31
+#define INFLATE_BOTH    47
+
 @interface NSData (GZIP)
 
 - (NSData *)gzippedDataWithCompressionLevel:(float)level andType:(int)dataType;
 - (NSData *)gzippedData;
+- (NSData *)gunzippedData:(int)dataType;
 - (NSData *)gunzippedData;
 
 @end

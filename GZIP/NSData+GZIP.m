@@ -81,7 +81,7 @@
     return [self gzippedDataWithCompressionLevel:-1.0f andType:DEFLATE_RAW];
 }
 
-- (NSData *)gunzippedData
+- (NSData *)gunzippedData:(int)dataType
 {
     if ([self length])
     {
@@ -94,7 +94,7 @@
         stream.avail_out = 0;
         
         NSMutableData *data = [NSMutableData dataWithLength: [self length] * 1.5];
-        if (inflateInit2(&stream, 47) == Z_OK)
+        if (inflateInit2(&stream, dataType) == Z_OK)
         {
             int status = Z_OK;
             while (status == Z_OK)
@@ -118,6 +118,11 @@
         }
     }
     return nil;
+}
+
+- (NSData *)gunzippedData
+{
+    return [self gunzippedData:INFLATE_RAW];
 }
 
 @end
