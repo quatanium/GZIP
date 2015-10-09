@@ -1,6 +1,6 @@
 GZIP
 
-Version 1.0, June 3rd, 2012
+Version 1.1.1, July 24th, 2015
 
 Copyright (C) 2012 Charcoal Design
 

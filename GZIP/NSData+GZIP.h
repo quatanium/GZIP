@@ -1,15 +1,16 @@
 //
 //  NSData+GZIP.h
 //
-//  Version 1.0
+//  Version 1.1.1
 //
 //  Created by Nick Lockwood on 03/06/2012.
+//  Modified by Eric Chen on 10/09/2015.
 //  Copyright (C) 2012 Charcoal Design
 //
 //  Distributed under the permissive zlib License
 //  Get the latest version from here:
 //
-//  https://github.com/nicklockwood/Gzip
+//  https://github.com/nicklockwood/GZIP
 //
 //  This software is provided 'as-is', without any express or implied
 //  warranty.  In no event will the authors be held liable for any damages
@@ -44,9 +45,10 @@
 
 @interface NSData (GZIP)
 
-- (NSData *)gzippedDataWithCompressionLevel:(float)level andType:(int)dataType;
-- (NSData *)gzippedData;
-- (NSData *)gunzippedData:(int)dataType;
-- (NSData *)gunzippedData;
+- (nullable NSData *)gzippedDataWithCompressionLevel:(float)level andType:(int)dataType;
+- (nullable NSData *)gzippedData;
+- (nullable NSData *)gunzippedData:(int)dataType;
+- (nullable NSData *)gunzippedData;
+- (BOOL)isGzippedData;
 
 @end
