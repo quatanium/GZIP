@@ -55,7 +55,7 @@ static void *libzOpen()
 
 - (NSData *)gzippedDataWithCompressionLevel:(float)level andType:(int)dataType
 {
-    if (self.length == 0 || [self isGzippedData])
+    if (self.length == 0 || (dataType == DEFLATE_GZIP && [self isGzippedData]))
     {
         return self;
     }
@@ -106,7 +106,7 @@ static void *libzOpen()
 
 - (NSData *)gunzippedData:(int)dataType
 {
-    if (self.length == 0 || ![self isGzippedData])
+    if (self.length == 0 || (dataType == INFLATE_GZIP && ![self isGzippedData]))
     {
         return self;
     }
